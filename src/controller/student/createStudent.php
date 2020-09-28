@@ -17,30 +17,23 @@ $student = new Student($db);
   
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
-if(!empty($data->studentId) &&
-!empty($data->firstName) &&
-!empty($data->lastName) &&
+//  echo json_encode(array("message" => "Unable to register User. Data is incomplete.", "data"=>$data));
+
+// make sure data is not empty
+if(!empty($data->studentId)&&
+!empty($data->firstName)&&
+!empty($data->studentId)&&
+!empty($data->lastName)&&
 !empty($data->email)&&
 !empty($data->contact)){
-    echo "success";
-}
- else{
-    echo "failed";
-}
-// make sure data is not empty
-/*if(isset($data)&& !empty($data)){
+    // set student property values
+    $student->studentID = $data->studentId;
+    $student->firstName = $data->firstName;
+    $student->lastName = $data->lastName;
+    $student->email = $data->email;
+    $student->contact = $data->contact;
   
-    $request = json_decode($data,true);
-
-    print_r("some data:"+$request);
-    // set product property values
-    $student->studentID = $request->studentId;
-    $student->firstName = $request->firstName;
-    $student->lastName = $request->lastName;
-    $student->email = $request->email;
-    $student->contact = $request->contact;
-  
-    // create the product
+    // create the student
     if($student->create()){
   
         // set response code - 201 created
@@ -50,7 +43,7 @@ if(!empty($data->studentId) &&
         echo json_encode(array("message" => "student was registered."));
     }
   
-    // if unable to create the product, tell the user
+    // if unable to create the student, tell the user
     else{
   
         // set response code - 503 service unavailable
@@ -68,5 +61,5 @@ else{
     // tell the user
     echo json_encode(array("message" => "Unable to register User. Data is incomplete.", "data"=>$data));
     return $data;
-}*/
+}
 ?>
