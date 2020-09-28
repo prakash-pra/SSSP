@@ -59,7 +59,6 @@ else{
     http_response_code(400);
   
     // tell the user
-    echo json_encode(array("message" => "Unable to register User. Data is incomplete.", "data"=>$data));
-    return $data;
+    echo json_encode(array("message" => "Unable to register User. Data is incomplete."));
 }
 ?>
