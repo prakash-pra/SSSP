@@ -1,0 +1,17 @@
+{
+  "name": "sssp/sssp",
+  "description": "This project is student streamin service for weltec and whitireia",
+  "type": "project",
+  "authors": [
+    {
+      "name": "prakash",
+      "email": "prakash287902@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "src\\": "./"
+    }
+  },
+  "require": {}
+}

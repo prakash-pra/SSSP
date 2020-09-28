@@ -17,16 +17,28 @@ $student = new Student($db);
   
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
-  
+if(!empty($data->studentId) &&
+!empty($data->firstName) &&
+!empty($data->lastName) &&
+!empty($data->email)&&
+!empty($data->contact)){
+    echo "success";
+}
+ else{
+    echo "failed";
+}
 // make sure data is not empty
-if(!empty($data->studentId) &&!empty($data->firstName)&&!empty($data->lastName) &&!empty($data->email)&&!empty($data->contact)){
+/*if(isset($data)&& !empty($data)){
   
+    $request = json_decode($data,true);
+
+    print_r("some data:"+$request);
     // set product property values
-    $student->studentID = $data->studentId;
-    $student->firstName = $data->firstName;
-    $student->lastName = $data->lastName;
-    $student->email = $data->email;
-    $student->contact = $data->contact;
+    $student->studentID = $request->studentId;
+    $student->firstName = $request->firstName;
+    $student->lastName = $request->lastName;
+    $student->email = $request->email;
+    $student->contact = $request->contact;
   
     // create the product
     if($student->create()){
@@ -54,6 +66,7 @@ else{
     http_response_code(400);
   
     // tell the user
-    echo json_encode(array("message" => "Unable to create product. Data is incomplete."));
-}
+    echo json_encode(array("message" => "Unable to register User. Data is incomplete.", "data"=>$data));
+    return $data;
+}*/
 ?>
