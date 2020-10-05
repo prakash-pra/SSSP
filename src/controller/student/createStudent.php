@@ -24,15 +24,12 @@ if(!empty($data->studentId)&&
 !empty($data->firstName)&&
 !empty($data->studentId)&&
 !empty($data->lastName)&&
-!empty($data->email)&&
-!empty($data->contact)){
+!empty($data->email)){
     // set student property values
     $student->studentID = $data->studentId;
     $student->firstName = $data->firstName;
     $student->lastName = $data->lastName;
     $student->email = $data->email;
-    $student->contact = $data->contact;
-  
     // create the student
     if($student->create()){
   

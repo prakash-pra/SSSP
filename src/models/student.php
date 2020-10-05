@@ -10,7 +10,6 @@ class Student{
   public $firstName;
   public $lastName;
   public $email;
-  public $contact;
   
   // constructor with $db as database connection
   public function __construct($db){
@@ -38,7 +37,7 @@ function create(){
   $query = "INSERT INTO
               " . $this->table_name . "
           SET
-              studentID=:studentID, firstName=:firstName, lastName=:lastName, email=:email, contact_number=:contact";
+              studentID=:studentID, firstName=:firstName, lastName=:lastName, email=:email";
 
   // prepare query
   $stmt = $this->conn->prepare($query);
@@ -48,7 +47,7 @@ function create(){
   $this->firstName=htmlspecialchars(strip_tags($this->firstName));
   $this->lastName=htmlspecialchars(strip_tags($this->lastName));
   $this->email=htmlspecialchars(strip_tags($this->email));
-  $this->contact=htmlspecialchars(strip_tags($this->contact));
+
   
 
   // bind values
@@ -56,7 +55,7 @@ function create(){
   $stmt->bindParam(":firstName", $this->firstName);
   $stmt->bindParam(":lastName", $this->lastName);
   $stmt->bindParam(":email", $this->email);
-  $stmt->bindParam(":contact", $this->contact);
+
 
   // execute query
   if($stmt->execute()){
