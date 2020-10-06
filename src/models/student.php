@@ -16,7 +16,7 @@ class Student{
       $this->conn = $db;
   }
 
-  // read products
+  // read student record
 public function getStudents(){
   
   // select all query
@@ -30,7 +30,7 @@ public function getStudents(){
   return $stmt;
 }
 
-// create product
+// create student
 function create(){
   
   // query to insert record
@@ -64,6 +64,37 @@ function create(){
 
   return false;
     
+}
+
+function check_email(){
+
+  $query = "SELECT * FROM " . $this->table_name . "WHERE email=:email";
+
+  $stmt =  $this->conn->prepare($query);
+  $stmt->bindParam(":email", $this->email);
+
+  if($stmt->execute()){
+   
+    $data = $stmt->fetch();
+    return $data;
+}
+  return array(); 
+}
+
+function check_login(){
+
+  $query = "SELECT * FROM student WHERE studentId=:studentID AND email=:email";
+
+  $stmt =  $this->conn->prepare($query);
+  $stmt->bindParam(":studentID", $this->studentID);
+  $stmt->bindParam(":email", $this->email);
+
+  if($stmt->execute()){
+    echo "inside execute";
+    $data = $stmt->fetch();
+    return $data;
+}
+  return array(); 
 }
 
 }

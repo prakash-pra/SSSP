@@ -30,24 +30,32 @@ if(!empty($data->studentId)&&
     $student->firstName = $data->firstName;
     $student->lastName = $data->lastName;
     $student->email = $data->email;
-    // create the student
-    if($student->create()){
+
+    $email_data = $student->check_email();
+    if(!empty($email_data)){
+        http_response_code(500);
+        echo json_encode(array("status"=> 0,
+        "message" => "student already exist, try another email address"));
+    } else{
+         // create the student
+        if($student->create()){
   
-        // set response code - 201 created
-        http_response_code(201);
-  
-        // tell the user
-        echo json_encode(array("message" => "student was registered."));
-    }
-  
-    // if unable to create the student, tell the user
-    else{
-  
-        // set response code - 503 service unavailable
-        http_response_code(503);
-  
-        // tell the user
-        echo json_encode(array("message" => "Unable to create user."));
+            // set response code - 201 created
+            http_response_code(201);
+      
+            // tell the user
+            echo json_encode(array("message" => "student was registered."));
+        }
+      
+        // if unable to create the student, tell the user
+        else{
+      
+            // set response code - 503 service unavailable
+            http_response_code(503);
+      
+            // tell the user
+            echo json_encode(array("message" => "Unable to create user."));
+        }
     }
 }
 else{
