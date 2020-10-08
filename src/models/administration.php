@@ -7,7 +7,7 @@ class Administrator{
 
   // object properties
   public $username;
-  public $password;
+  public $adminpassword;
   
   // constructor with $db as database connection
   public function __construct($db){
@@ -16,11 +16,11 @@ class Administrator{
 
 function check_login(){
 
-  $query = "SELECT * FROM administrator WHERE userName=:username AND password=:password";
+  $query = "SELECT * FROM administrator WHERE userName=:userName AND adminpassword=:adminpassword";
 
   $stmt =  $this->conn->prepare($query);
-  $stmt->bindParam(":userName", $this->password);
-  $stmt->bindParam(":password", $this->password);
+  $stmt->bindParam(":userName", $this->username);
+  $stmt->bindParam(":adminpassword", $this->adminpassword);
 
   if($stmt->execute()){
     $data = $stmt->fetch();

@@ -32,7 +32,7 @@ if(!empty($data->studentId)&&
   $user_data = $student->check_login();
   
   if(!empty($user_data)){
-    $studentId = $user_data['studentID'];
+    $studentId = $user_data['studentId'];
     $email = $user_data['email'];
 
     if($studentId == $data->studentId && $email == $data->email ){
@@ -43,7 +43,7 @@ if(!empty($data->studentId)&&
       $exp = $iat + 60;
       $aud = 'myuser';
       $user_arr_data = array(
-        "studentId"=> $user_data['studentID'],
+        "studentId"=> $user_data['studentId'],
           "email"=>$user_data['email'],
       );
       

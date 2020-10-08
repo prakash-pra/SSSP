@@ -24,18 +24,18 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 $data = json_decode(file_get_contents("php://input"));
 
 if(!empty($data->username)&&
-!empty($data->password)){
+!empty($data->adminpassword)){
 
   $administrator->username = $data->username;
-  $administrator->password = $data->password;
+  $administrator->adminpassword = $data->adminpassword;
 
   $user_data = $administrator->check_login();
   
   if(!empty($user_data)){
     $username = $user_data['userName'];
-    $password = $user_data['password'];
+    $adminpassword = $user_data['adminpassword'];
 
-    if($username == $data->username && $password == $data->password ){
+    if($username == $data->username && $adminpassword == $data->adminpassword ){
 
       $iss = 'localhost';
       $iat = time();
@@ -44,7 +44,7 @@ if(!empty($data->username)&&
       $aud = 'myuser';
       $user_arr_data = array(
         "username"=> $user_data['userName'],
-          "password"=>$user_data['password'],
+        "password"=>$user_data['adminpassword'],
       );
       
       $secret_key = "student@streaming!service$";
