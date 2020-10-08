@@ -90,7 +90,6 @@ function check_login(){
   $stmt->bindParam(":email", $this->email);
 
   if($stmt->execute()){
-    echo "inside execute";
     $data = $stmt->fetch();
     return $data;
 }
