@@ -3,7 +3,7 @@ class Database{
   
     // specify your own database credentials
     private $host = "localhost";
-    private $db_name = "testspreadsheet";
+    private $db_name = "sssp";
     private $username = "root";
     private $password = "";
     public $conn;
