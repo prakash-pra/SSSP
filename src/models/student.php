@@ -81,6 +81,23 @@ function check_email(){
   return array(); 
 }
 
+function remove_student(){
+
+  $query = "DELETE FROM " . $this->table_name . "WHERE studentID=:studentID";
+
+  $stmt =  $this->conn->prepare($query);
+  $stmt->bindParam(":studentID", $this->studentID);
+
+  if($stmt->execute()){
+  
+    return true;
+} else{
+
+  return false;
+}
+  
+}
+
 function check_login(){
 
   $query = "SELECT * FROM student WHERE studentId=:studentID AND email=:email";

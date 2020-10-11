@@ -27,7 +27,7 @@ if($allStudents>0){
 
     extract($row);
     $student_list=array(
-      "studentId" => $studentID,
+      "studentId" => $studentId,
       "firstName" => $firstName,
       "lastName" => $lastName,
       "email" => $email, 
