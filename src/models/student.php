@@ -82,17 +82,20 @@ function check_email(){
 }
 
 function remove_student(){
-
-  $query = "DELETE FROM " . $this->table_name . "WHERE studentID=:studentID";
-
+  
+  $studentId = (int)$this->studentID;
+  
+  $query = "DELETE FROM ".$this->table_name." WHERE studentId=:studentId";
+  
   $stmt =  $this->conn->prepare($query);
-  $stmt->bindParam(":studentID", $this->studentID);
+  $stmt->bindParam(":studentId", $this->studentId);
 
   if($stmt->execute()){
-  
+    if($stmt->rowCount() == 0){
+      return false;
+    }
     return true;
 } else{
-
   return false;
 }
   

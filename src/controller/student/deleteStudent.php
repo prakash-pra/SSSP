@@ -2,7 +2,7 @@
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Methods: DELETE");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
   
@@ -34,11 +34,11 @@ if(!empty($data->studentId)){
                                   "message" => "Student successfully removed."));
         } else {
           // set response code - 400 bad request
-          http_response_code(400);
+          http_response_code(404);
   
           // tell the user
-          echo json_encode(array("status" => 1,
-                              "message" => "Unable to remove student. Please try again."));
+          echo json_encode(array("status" => 0,
+                              "message" => "Unable to remove the student. Please try again."));
         }
 }
 else{
@@ -47,7 +47,7 @@ else{
     http_response_code(400);
   
     // tell the user
-    echo json_encode(array("status" => 1,
-                        "message" => "Unable to remove student. Please try again."));
+    echo json_encode(array("status" => 0,
+                        "message" => "Unable to remove the student. Please try again."));
 }
 ?>
