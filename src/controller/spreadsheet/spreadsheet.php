@@ -30,12 +30,12 @@ $conn = $database->getConnection();
 				$reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($file_type);
 				$reader->setReadDataOnly(TRUE); 
 				// $reader->setReadEmptyCells(FALSE);
-				$spreadsheet = $reader->load($file_name);
+        $spreadsheet = $reader->load($file_name);
 				unlink($file_name);
-				$data = $spreadsheet->getActiveSheet()->toArray();
-
+        $data = $spreadsheet->getActiveSheet()->toArray();
+        
 				foreach($data as $row) {
-					
+					print_r($data);
 					// get columns
 				 	$courseName = isset($row[0]) ? $row[0] : "";
 				 	$program = isset($row[1]) ? $row[1] : "";
